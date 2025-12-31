@@ -37,13 +37,48 @@ This project solves that problem by treating URL detection as a **Natural Langua
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/YOUR_USERNAME/phishing-url-detection.git](https://github.com/YOUR_USERNAME/phishing-url-detection.git)
-cd phishing-url-detection
+git clone https://github.com/pjknsiah/Zero-Day-Phishing-URL-Detector.git
+cd Zero-Day-Phishing-URL-Detector
+```
 
 ### 2. Install Dependencies
 ```bash
 pip install pandas numpy scikit-learn
+```
 
-### 3. Get the Dataset
+### 3. Prepare the Dataset
+The project requires a dataset named `urldata.csv`. Ensure this file is in the root directory.
+(Note: The repository includes a sample dataset, or you can download a comprehensive one from Kaggle).
+
+## 🏃 Usage
+
+Run the detector script directly:
+
 ```bash
-Download urldata.csv (or use the provided script to fetch it) and place it in the root directory.
+python phishing_detector.py
+```
+
+The script will:
+1. Load `urldata.csv`.
+2. Train the Logistic Regression model.
+3. Output the accuracy and a classification report.
+4. Test on a sample synthetic phishing URL.
+
+## 🧠 Deep Dive: How It Works
+
+1.  **Tokenization**: We split URLs not just by `/` but also by special characters like `-`, `.`, and `_`. This exposes hidden semantic words that attackers use (e.g., `secure`, `update`, `banking`) which are often mashed together in subdomains.
+2.  **Vectorization (TF-IDF)**:
+    *   **TF (Term Frequency)**: How often a word appears in a URL.
+    *   **IDF (Inverse Document Frequency)**: Reduces the weight of common terms (`com`, `http`) and boosts rare, suspicious terms.
+3.  **Model (Logistic Regression)**: A linear classifier that learns weights for each token. It is extremely fast, making it ideal for checking URLs in real-time (e.g., inside a browser extension or proxy).
+
+## 🔮 Future Improvements
+
+*   **GUI / Web Interface**: Build a Flask/Django frontend for easy user interaction.
+*   **Browser Extension**: Port the detection logic to a Chrome/Firefox extension.
+*   **Model serialization**: Save the trained model (`pickle`/`joblib`) to avoid retraining on every run.
+*   **Deep Learning**: Explore CNNs/LSTMs for character-level patterns.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
