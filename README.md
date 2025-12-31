@@ -1,12 +1,8 @@
 # Phishing URL Detection System (Lexical Analysis)
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![ML](https://img.shields.io/badge/Model-Logistic%20Regression-green)
-![Status](https://img.shields.io/badge/Accuracy-96.1%25-brightgreen)
-
 A machine learning-based security tool designed to detect malicious URLs in real-time based on **lexical analysis** rather than traditional blacklists. By utilizing **TF-IDF vectorization** and a **custom tokenizer**, this system identifies phishing attempts by analyzing URL structure, subdomain patterns, and path tokens.
 
-## 🚀 Project Overview
+## Project Overview
 
 Traditional phishing detection relies heavily on blacklists (databases of known bad sites). However, phishing domains are often short-lived (hours or days), making blacklists ineffective against **Zero-Day attacks**.
 
@@ -17,7 +13,7 @@ This project solves that problem by treating URL detection as a **Natural Langua
 * **TF-IDF Vectorization:** Weighs rare, suspicious keywords heavily while ignoring common terms (like `www` or `com`).
 * **Lightweight Inference:** Uses **Logistic Regression** for millisecond-latency prediction, suitable for real-time browser integration.
 
-## 📊 Key Results
+## Key Results
 
 * **Dataset:** 400,000+ URLs (Legitimate vs. Phishing).
 * **Model:** Logistic Regression (optimized for speed/accuracy trade-off).
@@ -29,7 +25,7 @@ This project solves that problem by treating URL detection as a **Natural Langua
 * `google.com-security-check.xy/login` $\to$ **PHISHING** (Detected via hyphenated subdomain pattern)
 * `www.amazon-orders-update.com` $\to$ **PHISHING** (Detected via suspicious keyword combination)
 
-## 🛠️ Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 * Python 3.8+
@@ -50,7 +46,7 @@ pip install pandas numpy scikit-learn
 The project requires a dataset named `urldata.csv`. Ensure this file is in the root directory.
 (Note: The repository includes a sample dataset, or you can download a comprehensive one from Kaggle).
 
-## 🏃 Usage
+## Usage
 
 Run the detector script directly:
 
@@ -64,7 +60,7 @@ The script will:
 3. Output the accuracy and a classification report.
 4. Test on a sample synthetic phishing URL.
 
-## 🧠 Deep Dive: How It Works
+## Deep Dive: How It Works
 
 1.  **Tokenization**: We split URLs not just by `/` but also by special characters like `-`, `.`, and `_`. This exposes hidden semantic words that attackers use (e.g., `secure`, `update`, `banking`) which are often mashed together in subdomains.
 2.  **Vectorization (TF-IDF)**:
@@ -72,13 +68,13 @@ The script will:
     *   **IDF (Inverse Document Frequency)**: Reduces the weight of common terms (`com`, `http`) and boosts rare, suspicious terms.
 3.  **Model (Logistic Regression)**: A linear classifier that learns weights for each token. It is extremely fast, making it ideal for checking URLs in real-time (e.g., inside a browser extension or proxy).
 
-## 🔮 Future Improvements
+## Future Improvements
 
 *   **GUI / Web Interface**: Build a Flask/Django frontend for easy user interaction.
 *   **Browser Extension**: Port the detection logic to a Chrome/Firefox extension.
 *   **Model serialization**: Save the trained model (`pickle`/`joblib`) to avoid retraining on every run.
 *   **Deep Learning**: Explore CNNs/LSTMs for character-level patterns.
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
