@@ -56,7 +56,7 @@ print("\nEvaluating...")
 y_pred = logit.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 
-print(f"\n✅ Model Accuracy: {accuracy * 100:.2f}%")
+print(f"\nModel Accuracy: {accuracy * 100:.2f}%")
 print("\n--- Classification Report ---")
 print(classification_report(y_test, y_pred))
 
