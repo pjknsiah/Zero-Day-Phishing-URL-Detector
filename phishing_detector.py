@@ -40,14 +40,12 @@ y = df['label']
 # Split Data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# --- STEP 3: TRAIN (Logistic Regression) ---
-# Logistic Regression is the industry standard for high-speed classification
+# TRAIN (Logistic Regression)
 print("Training Model...")
 logit = LogisticRegression(max_iter=1000)
 logit.fit(X_train, y_train)
 
-# --- STEP 4: EVALUATE ---
-print("\nEvaluating...")
+print("\nEvaluating")
 y_pred = logit.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 
@@ -55,8 +53,7 @@ print(f"\nModel Accuracy: {accuracy * 100:.2f}%")
 print("\n--- Classification Report ---")
 print(classification_report(y_test, y_pred))
 
-# --- STEP 5: REAL-TIME TEST ---
-# Let's test it on a fake phishing link right now
+# REAL-TIME TEST
 fake_phish = ["www.secure-login-update-apple.com/account-verify"]
 fake_vector = vectorizer.transform(fake_phish)
 prediction = logit.predict(fake_vector)
