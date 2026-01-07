@@ -5,20 +5,15 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import classification_report, accuracy_score
 
-# --- STEP 1: LOAD DATA ---
-print("Loading URL data...")
+print("Loading URL data")
 df = pd.read_csv('urldata.csv')
-
-# The dataset usually has 'url' and 'label' (bad/good)
-# Let's clean it up just in case
 df = df.dropna()
 
 print(f"Total URLs: {len(df)}")
 print("Example Malicious URL:", df[df['label'] == 'bad']['url'].iloc[0])
 
-# --- STEP 2: TOKENIZATION (The 'Research' Secret Sauce) ---
-# Standard NLP tokenizers split by spaces. URLs don't have spaces.
-# We need a custom tokenizer to split by '/', '-', '.' to find hidden patterns.
+# TOKENIZATION
+# Standard NLP tokenizers split by spaces. URLs don't have spaces so we need a custom tokenizer to split by '/', '-', '.' to find hidden patterns.
 def make_tokens(f):
     # Split by slash, then by dot, then by hyphen
     tokens_by_slash = str(f).split('/')
