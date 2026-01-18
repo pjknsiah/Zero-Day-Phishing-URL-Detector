@@ -23,7 +23,7 @@ This project solves that problem by treating URL detection as a **Natural Langua
 ### Real-World Test Cases
  The model successfully identifies synthetic "zero-day" URLs that are not in any database:
 * `google.com-security-check.xy/login` $\to$ **PHISHING** (Detected via hyphenated subdomain pattern)
-* `www.amazon-orders-update.com` $\to$ **PHISHING** (Detected via suspicious keyword combination)
+* `www.amazon-orders-update.com` $\to$ **PHISHING** (Detected via suspicious keyword combination) 
 
 ## Installation & Setup
 
